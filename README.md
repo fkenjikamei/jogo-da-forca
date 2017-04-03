@@ -1,4 +1,5 @@
 # jogo-da-forca
 Jogo da Forca em Python
 
-### Link
+### Links
+[Discord](https://discord.gg/NAJCGYN)
