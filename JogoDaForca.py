@@ -14,6 +14,7 @@ nome = str(input("Digite seu nome: "))
 print("\n*** Jogo da Forca em Python ***")
 # mensagem de boas vidas
 print("*** Bem vindo {name} ao jogo da forca em Python ***\n".format(name=nome))
+# imprime a lista de categorias contida no arquivo JSON
 print("\n*** Escolha uma categoria abaixo ***")
 for item in data:
 	print('*',item)
