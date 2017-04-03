@@ -5,7 +5,7 @@ import random
 	Jogo da Forca em Python criado originalmente por Fernando Kenji Kamei
 	Modificado e comentado por Ramon Rodrigues
 '''
-# carrando categoria do arquivo json
+# carrega dados do arquivo json
 data = json.load(open('data.json'))
 
 # jogador digita o nome
