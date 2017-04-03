@@ -1,10 +1,12 @@
-import json
-import random
-
+#coding: utf-8
 '''
 	Jogo da Forca em Python criado originalmente por Fernando Kenji Kamei
 	Modificado e comentado por Ramon Rodrigues
 '''
+
+import json
+import random
+
 # carrega dados do arquivo json
 data = json.load(open('data.json'))
 
