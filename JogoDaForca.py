@@ -53,9 +53,5 @@ while acertou == False:
 			acertou = False
 
 # mensagem de acerto de todas as letras
-<<<<<<< HEAD
 palavra = "".join(letras_descobertas)
 print("\n*** Parabens {name}, você descubriu a palavra que era {palavra} ***\n".format(name=nome, palavra=palavra))
-=======
-print("\n*** Parabens {name}, você descubriu a palavra ***\n".format(name=nome))
->>>>>>> origin/master
