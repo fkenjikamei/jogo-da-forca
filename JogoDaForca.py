@@ -18,7 +18,7 @@ print("\n*** Escolha uma categoria abaixo ***")
 for item in data:
 	print('*',item)
 # pergunta a categoria
-categoria = input("Digite a categoria: ")
+categoria = str(input("Digite a categoria: ")).lower()
 # palavra secreta a ser descobrida
 palavra_secreta = data[categoria][random.randrange(0, len(data[categoria]))]
 # aqui fica armazenado as letras já descobertas
@@ -33,12 +33,12 @@ acertou = False
 
 # se acertou é false pede uma letra
 while acertou == False:
-	letra  = str(input("Digite uma letra: "))
+	letra  = str(input("Digite uma letra: ")).lower()
 
 	# verifica se a letra está correta e substitui o "-" pela letra
 	for i in range(0, len(palavra_secreta)):
 		if letra == palavra_secreta[i]:
-			letras_descobertas[i] = letra
+			letras_descobertas[i] = letra.upper()
 		print(letras_descobertas[i])
 
 	# descubriu uma letra deixa "acertou" verdadeiro
@@ -46,8 +46,9 @@ while acertou == False:
 
 	# verifica se ainda existe "-" se sim  retorna ao loop até descubrir
 	for x in range(0, len(letras_descobertas)):
-		if letras_descobertas[x] == "-":
+		if letras_descobertas[x] == "?":
 			acertou = False
 
 # mensagem de acerto de todas as letras
-print("\n*** Parabens {name}, você descubriu a palavra ***\n".format(name=nome))
+palavra = "".join(letras_descobertas)
+print("\n*** Parabens {name}, você descubriu a palavra que era {palavra} ***\n".format(name=nome, palavra=palavra))
