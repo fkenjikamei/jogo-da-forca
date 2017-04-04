@@ -1,11 +1,13 @@
-import json
-import random
-
+#coding: utf-8
 '''
 	Jogo da Forca em Python criado originalmente por Fernando Kenji Kamei
 	Modificado e comentado por Ramon Rodrigues
 '''
-# carrando categoria do arquivo json
+
+import json
+import random
+
+# carrega dados do arquivo json
 data = json.load(open('data.json'))
 
 # jogador digita o nome
@@ -14,6 +16,7 @@ nome = str(input("Digite seu nome: "))
 print("\n*** Jogo da Forca em Python ***")
 # mensagem de boas vidas
 print("*** Bem vindo {name} ao jogo da forca em Python ***\n".format(name=nome))
+# imprime a lista de categorias contida no arquivo JSON
 print("\n*** Escolha uma categoria abaixo ***")
 for item in data:
 	print('*',item)
@@ -50,5 +53,9 @@ while acertou == False:
 			acertou = False
 
 # mensagem de acerto de todas as letras
+<<<<<<< HEAD
 palavra = "".join(letras_descobertas)
 print("\n*** Parabens {name}, você descubriu a palavra que era {palavra} ***\n".format(name=nome, palavra=palavra))
+=======
+print("\n*** Parabens {name}, você descubriu a palavra ***\n".format(name=nome))
+>>>>>>> origin/master
