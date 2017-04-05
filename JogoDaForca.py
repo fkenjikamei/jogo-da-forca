@@ -1,57 +1,47 @@
 #coding: utf-8
-'''
-	Jogo da Forca em Python criado originalmente por Fernando Kenji Kamei
-	Modificado e comentado por Ramon Rodrigues
-'''
-
 import json
 import random
 
-# carrega dados do arquivo json
-data = json.load(open('data.json'))
+letras_descobertas = [] # aqui fica armazenado as letras já descobertas, redundante, pois o nome da variável é auto explicativo
+quantidadeLetrasDescobertas = 0
+acertou = False # false para fazer loop até descubrir
 
-# jogador digita o nome
+data = json.load(open('data.json')) # carrega dados do arquivo json
+
 nome = str(input("Digite seu nome: "))
-# titulo do jogo
-print("\n*** Jogo da Forca em Python ***")
-# mensagem de boas vidas
-print("*** Bem vindo {name} ao jogo da forca em Python ***\n".format(name=nome))
-# imprime a lista de categorias contida no arquivo JSON
-print("\n*** Escolha uma categoria abaixo ***")
-for item in data:
-	print('*',item)
-# pergunta a categoria
-categoria = str(input("Digite a categoria: ")).lower()
-# palavra secreta a ser descobrida
-palavra_secreta = data[categoria][random.randrange(0, len(data[categoria]))]
-# aqui fica armazenado as letras já descobertas
-letras_descobertas = []
 
-# se a palavra ainda não foram descobertas adiciona um "-"
-for i in range(0, len(palavra_secreta)):
+print("\n*** Jogo da Forca em Python ***") # titulo do jogo
+print("*** Bem vindo {nome} ao jogo da forca em Python ***\n".format(nome=nome)) # mensagem de boas vidas
+print("\n*** Escolha uma categoria abaixo ***") # imprime a lista de categorias contida no arquivo JSON
+
+for item in data: 
+	print('*',item) # pergunta a categoria
+
+categoria = str(input("Digite a categoria: ")).lower()
+palavra_secreta = data[categoria][random.randrange(0, len(data[categoria]))] # sorteia a palavra secreta a ser descobrerta
+
+#print(palavra_secreta) #inserido para facilitar os testes --------------SERÁ DELETADO DEPOIS-----------
+
+for i in range(0, len(palavra_secreta)): # se a palavra ainda não foram descobertas adiciona um "-"
 	letras_descobertas.append("-")
 
-# false para fazer loop até descubrir
-acertou = False
+while (acertou == False): # Enquanto acertou for igual a false e a quantidade de erros for menor que o limite, o jogo continua
+	if(quantidadeLetrasDescobertas > 0): #Se tudo for zero, não será mostrado
+		print("Acertos", quantidadeLetrasDescobertas)
+	
+	letra  = str(input("Digite uma letra: ")).lower() #Será convertido para minúsculo qualquer caractere
 
-# se acertou é false pede uma letra
-while acertou == False:
-	letra  = str(input("Digite uma letra: ")).lower()
+	for interator in range(0, len(palavra_secreta)): # verifica se a letra está correta e substitui o "-" pela letra
+		if (letra == palavra_secreta[interator]):
+			
+			quantidadeLetrasDescobertas += 1
+			letras_descobertas[interator] = letra.upper()
+		print(letras_descobertas[interator])
+	
+	if (quantidadeLetrasDescobertas == len(palavra_secreta)):
+		print("Fim do jogo, você descobriu a palavra secreta,",palavra_secreta)
+		acertou = True
 
-	# verifica se a letra está correta e substitui o "-" pela letra
-	for i in range(0, len(palavra_secreta)):
-		if letra == palavra_secreta[i]:
-			letras_descobertas[i] = letra.upper()
-		print(letras_descobertas[i])
-
-	# descubriu uma letra deixa "acertou" verdadeiro
-	acertou = True
-
-	# verifica se ainda existe "-" se sim  retorna ao loop até descubrir
-	for x in range(0, len(letras_descobertas)):
-		if letras_descobertas[x] == "?":
+	for x in range(0, len(letras_descobertas)): # verifica se ainda existe "-" se sim  retorna ao loop até descubrir
+		if (letras_descobertas[x] == "-"):
 			acertou = False
-
-# mensagem de acerto de todas as letras
-palavra = "".join(letras_descobertas)
-print("\n*** Parabens {name}, você descubriu a palavra que era {palavra} ***\n".format(name=nome, palavra=palavra))
