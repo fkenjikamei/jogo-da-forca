@@ -96,7 +96,7 @@ while (erroLetras < limiteErros and acertoLetras < len(palavraEscolhida)): #Defi
     entradaTeclado()
 
 if(acertoLetras >= len(palavraEscolhida) and acertoLetras > 0): #Resposta para a condição de game over
-    print("Parabéns, você descobriu a palavra secreta", palavraEscolhida)
+    print("Parabéns", nome, "você descobriu a palavra secreta", palavraEscolhida)
 
 if(erroLetras >= limiteErros): #Resposta para a condição de vitória
-    print("Infelizmente atingiu o limite de erros")
+    print(nome, "infelizmente você atingiu o limite de erros, a palavra secreta é", palavraEscolhida)
