@@ -1,6 +1,7 @@
 import random
 import json
-import os 
+import os
+from imprimir import Imprimir
 
 letrasUsadas = "" #serve para armazenar as letras que já foram digitadas 
 caracterespermitidos = "abcdefghijklmnopqrstuvwxyz" #limita os caracteres usados no código
@@ -10,8 +11,9 @@ limiteErros = 6
 acertoLetras = 0
 erroLetras = 0
 
-data = json.load(open('data.json')) # carrega dados do arquivo json
+desenhoTela = Imprimir()
 os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
+data = json.load(open('data.json')) # carrega dados do arquivo json
 nome = str(input("Digite seu nome: "))
 print("\n*** Jogo da Forca em Python ***") # titulo do jogo
 print("*** Bem vindo {nome} ao jogo ***\n".format(nome=nome)) # mensagem de boas vidas
@@ -29,11 +31,13 @@ while(verificaCategoria == False):
         print("Nome da categoria inválido")
     
 palavraEscolhida = data[categoria][random.randrange(0, len(data[categoria]))] # sorteia a palavra secreta a ser descobrerta
-    
+os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
+desenhoTela.desenharNaTela(0)
+
 for i in range(0, len(palavraEscolhida)): # se a palavra ainda não foram descobertas adiciona um "-"
         letrasDescobertas.append("-")
 
-print(letrasDescobertas)
+print(letrasDescobertas, "\nA palavra contém,", len(palavraEscolhida),"letras")
 
 def entradaTeclado(): 
     verificaLetra = False
@@ -43,6 +47,7 @@ def entradaTeclado():
     global erroLetras
     global acertoLetras
     global letrasDescobertas
+    global desenhoTela
     
     entradaLetra = input("Digite a letra: ").lower()
     for i in range(0, len(caracterespermitidos)): #Será verificado se a letra é válida, dentro do escopo inicial de letras permitidas
@@ -65,7 +70,7 @@ def entradaTeclado():
                     verificarNaPalavraSecreta = True
                     acertoLetras += 1
                     letrasDescobertas[i] = entradaLetra #Vai preencher visual as letras
-            
+                    
             os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
             reserva = "" #Criada apenas para exibir em linha
             for i in range(0, len(palavraEscolhida)): #Vai passar dentro da palavra secreta para desenhar na tela
@@ -85,12 +90,11 @@ def entradaTeclado():
     if (verificaLetra == False):
         print("Caractere inválido ")
         entradaTeclado()
+    desenhoTela.desenharNaTela(erroLetras)
 
 while (erroLetras < limiteErros and acertoLetras < len(palavraEscolhida)): #Definição do que pode dar game over e vitória
     print("Letras já digita", letrasUsadas)
-    print("Erros", erroLetras)
-    print("Acertos", acertoLetras)
-    
+        
     if (erroLetras == 5):
         print("Última tentativa, próximo erro, perde o jogo. ")
     entradaTeclado()
