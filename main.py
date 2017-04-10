@@ -47,13 +47,15 @@ def entradaTeclado():
     global erroLetras
     global acertoLetras
     global letrasDescobertas
-    global desenhoTela
+    #global desenhoTela
     
     entradaLetra = input("Digite a letra: ").lower()
-    for i in range(0, len(caracterespermitidos)): #Será verificado se a letra é válida, dentro do escopo inicial de letras permitidas
-        if (entradaLetra == caracterespermitidos[i]):
-            print("Caractere encontrado")
-            verificaLetra = True
+    if(len(entradaLetra) == 1):
+        
+        for i in range(0, len(caracterespermitidos)): #Será verificado se a letra é válida, dentro do escopo inicial de letras permitidas
+            if (entradaLetra == caracterespermitidos[i]):
+                print("Caractere encontrado")
+                verificaLetra = True
     
     if (verificaLetra == True): #Agora é verificado se a letra já foi digitada pelo usuário antes
         for i in range(0, len(letrasUsadas)):
@@ -71,7 +73,6 @@ def entradaTeclado():
                     acertoLetras += 1
                     letrasDescobertas[i] = entradaLetra #Vai preencher visual as letras
                     
-            os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
             reserva = "" #Criada apenas para exibir em linha
             for i in range(0, len(palavraEscolhida)): #Vai passar dentro da palavra secreta para desenhar na tela
                 reserva += letrasDescobertas[i]
@@ -90,6 +91,7 @@ def entradaTeclado():
     if (verificaLetra == False):
         print("Caractere inválido ")
         entradaTeclado()
+    os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
     desenhoTela.desenharNaTela(erroLetras)
 
 while (erroLetras < limiteErros and acertoLetras < len(palavraEscolhida)): #Definição do que pode dar game over e vitória
