@@ -6,7 +6,8 @@ Modificado e comentado por Ramon Rodrigues.
 Código reescrito para que tenha condição de vitória e game over, além de ser mais amigável visualmente tanto o código quanto o funcionamento do jogo.</p>
 
 </br>
-[Alt text](/img/forca.jpg?raw=true "Jogo da forca desenvolvido em Python")
+
+![Alt text](/img/forca.jpg?raw=true "Jogo da forca desenvolvido em Python")
 </br>
 
 ## Contribuidores
