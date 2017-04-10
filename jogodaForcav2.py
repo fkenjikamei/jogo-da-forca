@@ -29,7 +29,7 @@ while(verificaCategoria == False):
         verificaCategoria = True
     else:
         print("Nome da categoria inválido")
-    
+
 palavraEscolhida = data[categoria][random.randrange(0, len(data[categoria]))] # sorteia a palavra secreta a ser descobrerta
 os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
 desenhoTela.desenharNaTela(0)
