@@ -1,13 +1,12 @@
 # jogo-da-forca
 Jogo da Forca em Python
 
-'''
-	Jogo da Forca em Python criado originalmente por Fernando Kenji Kamei. 
-	Modificado e comentado por Ramon Rodrigues.
-    Código reescrito para que tenha condição de vitória e game over, além de ser mais amigável visualmente tanto o código quanto o funcionamento do jogo.
+<p>Jogo da Forca em Python criado originalmente por Fernando Kenji Kamei. 
+Modificado e comentado por Ramon Rodrigues.
+Código reescrito para que tenha condição de vitória e game over, além de ser mais amigável visualmente tanto o código quanto o funcionamento do jogo.</p>
 
-'''
-![Alt text](/img/forca.jpg?raw=true "Jogo da forca desenvolvido em Python")
+</br>
+[Alt text](/img/forca.jpg?raw=true "Jogo da forca desenvolvido em Python")
 </br>
 
 ## Contribuidores
