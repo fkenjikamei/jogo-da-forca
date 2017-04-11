@@ -12,7 +12,7 @@ Código reescrito para que tenha condição de vitória e game over, além de se
 
 ## Contribuidores
 * [Fernando Kenji Kamei, projeto original](https://www.youtube.com/user/fkenjikamei/videos?sort=dd&shelf_id=0&view=0)
-* [Ramon Rodrigues, ](https://github.com/ayerdio)
+* [Ramon Rodrigues](https://github.com/ayerdio)
 * [Fred Oliveira](https://github.com/guimaraf)
 
 ### Links
