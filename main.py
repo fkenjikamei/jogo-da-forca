@@ -43,12 +43,12 @@ def entradaTeclado():
     verificaLetra = False
     verificaRepetida = False
     verificarNaPalavraSecreta = False
+    reserva = "" #Criada apenas para exibir em linha
     global letrasUsadas #Estou usando variáveis globais na função para evitar ficar passando por parâmetros, o que pode deixar o código um pouco complexo
     global erroLetras
     global acertoLetras
     global letrasDescobertas
-    #global desenhoTela
-    
+        
     entradaLetra = input("Digite a letra: ").lower()
     if(len(entradaLetra) == 1):
         
@@ -73,19 +73,14 @@ def entradaTeclado():
                     acertoLetras += 1
                     letrasDescobertas[i] = entradaLetra #Vai preencher visual as letras
                     
-            reserva = "" #Criada apenas para exibir em linha
-            for i in range(0, len(palavraEscolhida)): #Vai passar dentro da palavra secreta para desenhar na tela
-                reserva += letrasDescobertas[i]
-            print(reserva)
-    
             if (verificarNaPalavraSecreta == True):
                 print("Existe a letra", entradaLetra,"\nPróxima letra")
 
             else:
-                print("Não existe a {letra} na palavra secreta".format(letra=entradaLetra))
+                print("Não existe a letra {letra} na palavra secreta".format(letra=entradaLetra))
                 erroLetras += 1
         else:
-            print("Letras já digitadas", letrasUsadas)
+            #print("Letras já digitadas", letrasUsadas)
             entradaTeclado()
 
     if (verificaLetra == False):
@@ -93,10 +88,12 @@ def entradaTeclado():
         entradaTeclado()
     os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
     desenhoTela.desenharNaTela(erroLetras)
+    print("Letras já digita", letrasUsadas)
+    for i in range(0, len(palavraEscolhida)): #Vai passar dentro da palavra secreta para desenhar na tela
+        reserva += letrasDescobertas[i]
+    print("\n", reserva)
 
 while (erroLetras < limiteErros and acertoLetras < len(palavraEscolhida)): #Definição do que pode dar game over e vitória
-    print("Letras já digita", letrasUsadas)
-        
     if (erroLetras == 5):
         print("Última tentativa, próximo erro, perde o jogo. ")
     entradaTeclado()
