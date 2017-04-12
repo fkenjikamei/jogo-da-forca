@@ -1,6 +1,4 @@
-import random
-import json
-import os
+import random, json, os
 from imprimir import Imprimir
 
 letrasUsadas = "" #serve para armazenar as letras que já foram digitadas
@@ -44,10 +42,7 @@ def entradaTeclado():
     verificaRepetida = False
     verificarNaPalavraSecreta = False
     reserva = "" #Criada apenas para exibir em linha
-    global letrasUsadas #Estou usando variáveis globais na função para evitar ficar passando por parâmetros, o que pode deixar o código um pouco complexo
-    global erroLetras
-    global acertoLetras
-    global letrasDescobertas
+    global letrasUsadas, erroLetras, acertoLetras, letrasDescobertas
 
     entradaLetra = input("Digite a letra: ").lower()
     if(len(entradaLetra) == 1):
