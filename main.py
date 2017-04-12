@@ -14,7 +14,7 @@ erroLetras = 0
 desenhoTela = Imprimir()
 os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
 data = json.load(open('data.json')) # carrega dados do arquivo json
-nome = str(input("Digite seu nome: "))
+nome = input("Digite seu nome: ")
 print("\n*** Jogo da Forca em Python ***") # titulo do jogo
 print("*** Bem vindo {nome} ao jogo ***\n".format(nome=nome)) # mensagem de boas vidas
 print("\n*** Escolha uma categoria abaixo ***") # imprime a lista de categorias contida no arquivo JSON
@@ -24,7 +24,7 @@ for item in data:
 
 verificaCategoria = False
 while(verificaCategoria == False):
-    categoria = str(input("Digite a categoria: ")).lower()
+    categoria = input("Digite a categoria: ").lower()
     if(categoria == "frutas" or categoria == "nomes"):
         verificaCategoria = True
     else:
@@ -80,7 +80,6 @@ def entradaTeclado():
                 print("Não existe a letra {letra} na palavra secreta".format(letra=entradaLetra))
                 erroLetras += 1
         else:
-            #print("Letras já digitadas", letrasUsadas)
             entradaTeclado()
 
     if (verificaLetra == False):
@@ -98,8 +97,8 @@ while (erroLetras < limiteErros and acertoLetras < len(palavraEscolhida)): #Defi
         print("Última tentativa, próximo erro, perde o jogo. ")
     entradaTeclado()
 
-if(acertoLetras >= len(palavraEscolhida) and acertoLetras > 0): #Resposta para a condição de game over
+if(acertoLetras >= len(palavraEscolhida) and acertoLetras > 0): #Resposta para a condição de vitória
     print("Parabéns", nome, "você descobriu a palavra secreta", palavraEscolhida)
 
-if(erroLetras >= limiteErros): #Resposta para a condição de vitória
+if(erroLetras >= limiteErros): #Resposta para a condição de game over
     print(nome, "infelizmente você atingiu o limite de erros, a palavra secreta é", palavraEscolhida)
