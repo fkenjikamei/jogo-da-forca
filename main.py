@@ -2,7 +2,7 @@ import random, json, os
 from imprimir import Imprimir
 
 letrasUsadas = "" #serve para armazenar as letras que já foram digitadas
-caracterespermitidos = "abcdefghijklmnopqrstuvwxyz" #limita os caracteres usados no código
+caracteresPermitidos = "abcdefghijklmnopqrstuvwxyz" #limita os caracteres usados no código
 palavraEscolhida = ""
 letrasDescobertas = []
 limiteErros = 6
@@ -22,11 +22,13 @@ for item in data:
 
 verificaCategoria = False
 while verificaCategoria == False:
-    categoria = input("Digite a categoria: ").lower()
+    categoria = input("\nDigite a categoria: ").lower()
+    
     if(categoria == "frutas" or categoria == "nomes"):
         verificaCategoria = True
     else:
-        print("Nome da categoria inválido")
+        print("Nome da categoria inválida")
+
 
 palavraEscolhida = data[categoria][random.randrange(0, len(data[categoria]))] # sorteia a palavra secreta a ser descobrerta
 os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
@@ -39,7 +41,7 @@ print(letrasDescobertas, "\nA palavra contém,", len(palavraEscolhida),"letras")
 
 def entradaTeclado():
     verificaLetra = False
-    verificaRepetida = False
+    verificaLetraRepetida = False
     verificarNaPalavraSecreta = False
     reserva = "" #Criada apenas para exibir em linha
     global letrasUsadas, erroLetras, acertoLetras, letrasDescobertas
@@ -47,8 +49,8 @@ def entradaTeclado():
     entradaLetra = input("Digite a letra: ").lower()
     if(len(entradaLetra) == 1):
 
-        for i in range(0, len(caracterespermitidos)): #Será verificado se a letra é válida, dentro do escopo inicial de letras permitidas
-            if (entradaLetra == caracterespermitidos[i]):
+        for i in range(0, len(caracteresPermitidos)): #Será verificado se a letra é válida, dentro do escopo inicial de letras permitidas
+            if (entradaLetra == caracteresPermitidos[i]):
                 print("Caractere encontrado")
                 verificaLetra = True
 
@@ -56,10 +58,10 @@ def entradaTeclado():
         for i in range(0, len(letrasUsadas)):
             if entradaLetra == letrasUsadas[i]:
                 print("Letra já usada, digite novamente") #Evitar de registrar caractere repetido
-                verificaRepetida = True
+                verificaLetraRepetida = True
                 entradaTeclado()
 
-        if verificaRepetida == False: #Se cair neste bloco, é por não ser repetida
+        if verificaLetraRepetida == False: #Se cair neste bloco, é por não ser repetida
             letrasUsadas += entradaLetra
 
             for i in range(0, len(palavraEscolhida)):
@@ -82,7 +84,7 @@ def entradaTeclado():
         entradaTeclado()
     os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
     desenhoTela.desenharNaTela(erroLetras)
-    print("Letras já digita", letrasUsadas)
+    print("Letras já digitadas: ", letrasUsadas)
     for i in range(0, len(palavraEscolhida)): #Vai passar dentro da palavra secreta para desenhar na tela
         reserva += letrasDescobertas[i]
     print("\n", reserva)
