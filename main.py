@@ -5,7 +5,7 @@ letrasUsadas = "" #serve para armazenar as letras que já foram digitadas
 caracteresPermitidos = "abcdefghijklmnopqrstuvwxyz" #limita os caracteres usados no código
 palavraEscolhida = ""
 letrasDescobertas = []
-limiteErros = 6
+limiteErros = 6 #não deve ser modificado, caso contrário, terá que modificar a impressão do boneco de acordo com a quantidade de erros permitidos
 acertoLetras = 0
 erroLetras = 0
 data = ""
@@ -20,6 +20,7 @@ def configuracoesIniciaisDoJogo():
 	os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
 	data = json.load(open('data.json')) # carrega dados do arquivo json
 
+
 def escolherCategoria():
 	global verificaCategoria, categoria
 	while verificaCategoria == False:
@@ -28,29 +29,8 @@ def escolherCategoria():
 	    if(categoria == "frutas" or categoria == "nomes"):
 	        verificaCategoria = True
 	    else:
-	        print("Nome da categoria inválida")
+	        print(">>> Nome da categoria inválida")
 
-###### INÍCIO DO JOGO ######
-configuracoesIniciaisDoJogo()
-nome = input("Digite seu nome: ")
-print("\n*** Jogo da Forca em Python ***") # titulo do jogo
-print("*** Bem vindo ao jogo {} ***\n".format(nome)) # mensagem de boas vidas
-print("\n*** Escolha uma categoria abaixo ***") # imprime a lista de categorias contida no arquivo JSON
-for item in data:
-	print('*',item) # pergunta a categoria
-
-escolherCategoria()
-
-
-
-palavraEscolhida = data[categoria][random.randrange(0, len(data[categoria]))] # sorteia a palavra secreta a ser descobrerta
-os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
-desenhoTela.desenharNaTela(0)
-
-for i in range(0, len(palavraEscolhida)): # se a palavra ainda não foram descobertas adiciona um "-"
-        letrasDescobertas.append("-")
-
-print(letrasDescobertas, "\nA palavra contém,", len(palavraEscolhida),"letras")
 
 def entradaTeclado():
     verificaLetra = False
@@ -101,6 +81,28 @@ def entradaTeclado():
     for i in range(0, len(palavraEscolhida)): #Vai passar dentro da palavra secreta para desenhar na tela
         reserva += letrasDescobertas[i]
     print("\n", reserva)
+
+
+###### INÍCIO DO JOGO ######
+configuracoesIniciaisDoJogo()
+nome = input("Digite seu nome: ")
+print("\n*** Jogo da Forca em Python ***") # titulo do jogo
+print("*** Bem vindo ao jogo {} ***\n".format(nome)) # mensagem de boas vidas
+print("\n*** Escolha uma categoria abaixo ***") # imprime a lista de categorias contida no arquivo JSON
+for item in data:
+	print('*',item) # pergunta a categoria
+
+escolherCategoria()
+
+
+palavraEscolhida = data[categoria][random.randrange(0, len(data[categoria]))] # sorteia a palavra secreta a ser descobrerta
+os.system('cls' if os.name == 'nt' else 'clear') #Vai limpar tela, tanto no windows ou linux
+desenhoTela.desenharNaTela(0)
+
+for i in range(0, len(palavraEscolhida)): # se a palavra ainda não foram descobertas adiciona um "-"
+        letrasDescobertas.append("-")
+
+print(letrasDescobertas, "\nA palavra contém,", len(palavraEscolhida),"letras")
 
 while erroLetras < limiteErros and acertoLetras < len(palavraEscolhida): #Definição do que pode dar game over e vitória
     if (erroLetras == 5):
